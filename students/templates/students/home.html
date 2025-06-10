@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            columns: rgb(232, 143, 35);
+        }
+    </style>
+    </head>
+    <body>
+        <h1>Student Management App</h1>
+        <h3><a href="login/">Login</a></h3>
+
+        {%for i in students%}
+        <h4> {{i}} </h4>
+        {% endfor%}
+        <li>
+            <ol><a>+Add Students</a></ol>
+            <ol><a>+Manage Students</a></ol>
+            <ol><a>+View Students</a></ol>
+        </li>
+    </body>
+</html>
