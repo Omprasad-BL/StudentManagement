@@ -1,0 +1,17 @@
+<div>
+
+    <h1>Hello Its a Header block rendered within home page event it is outside  </h1>
+    <nav>
+        <h1>Nivk Hanger </h1>
+        <ul>
+            {% comment %} <li><a href="http://127.0.0.1:8000/student/login/">login</a></li>
+            <li><a href="http://127.0.0.1:8000/student/dashboard/">dashboard</a></li> {% endcomment %}
+
+            {%  for item in items %}
+            <li><a href="{% url item.url %}"> {{item.name }}</a></li>
+
+            {% endfor %}
+
+        </ul>
+    </nav>
+</div>
