@@ -11,8 +11,9 @@ step 4 activate bat configure file " venv/Scripts/activate.bat
 <!-- Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope  Process -->
 <!-- venv/Scripts/activate  -->
 step 5 install django "pip install django" 
-step 6 create django project "djnago-admin startproject projectname ." NOTE: here dot helps to create app in currecnt directory
-step 7 create then create other apps for main app like above "django-admin startproject projectname"
+step 6 create django project "djnago-admin startproject projectname ." NOTE: here dot helps to create PROJECTC  in current directory ONLY FOR PROJECTS MAIN APP WHICH HANDLES ALL smaller DJANGO APPS
+
+step 7 create then create other apps for MAIN_APP app like above "django-admin startapp appName"    ONLY FOR APPS (djnago Modules) SMALL APPS WHICH WHICH ARE handled by  DJANGO Project
 
 step 8 after all project set-up use "python manage.py runserver" to run or start project 
 Project Flow-->manage.py-->mainApp "which created with dot above" --> other apps
@@ -24,6 +25,6 @@ step 10 each time you deal with python sqlite versions follow steps
         step B: python manage.py migrate 
         NOTE: migrate will help to synch data class/ plain class each time they changed by user
 
-step 11 restart once migration happens to let know machine Objects properties chnaged 
+step 11 restart once migration happens to let know machine Objects properties changed 
 
 WARNING : never use "python manage.py startapp main"  MORE THAN ONCE
