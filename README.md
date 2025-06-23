@@ -1,6 +1,5 @@
 # djnago based full stack project to learn flow of djnago framework
 
-# mcaprojs
 
 steps invovled to get started with django
 step 1 create a project folder
