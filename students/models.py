@@ -34,5 +34,19 @@ class Student(models.Model):
         return f"{self.name}: Verified:{self.is_verified}"
     
 class StudentProfile(models.Model):
-    id=models.OneToOneField(Student,on_delete=models.CASCADE,primary_key=True )
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)  # OneToOneField
+    address = models.TextField()
+    phone = models.CharField(max_length=15)
+    profile_picture_url = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"Profile of {self.student.name}"
     
+# class StudentProfile(models.Model):
+#     student = models.OneToOneField(Student, on_delete=models.CASCADE, null=True)
+#     address = models.TextField(null=True, blank=True)
+#     phone = models.CharField(max_length=15, null=True, blank=True)
+#     profile_picture_url = models.CharField(max_length=255, blank=True)
+
+#     def __str__(self):
+#         return f"Profile of {self.student.name}"
