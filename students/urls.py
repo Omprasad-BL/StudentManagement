@@ -12,7 +12,13 @@ urlpatterns =[
     path("student/<int:pk>/delete/",views.student_delete,name="student_delete"),
 
     #  course routings
-    path("create_course/",views.CreateCourse,name="Course")
+    path("create_course/",views.CreateCourse,name="create_course"),
+    path("course_list/",views.read_all_course,name="course_list"),
+    path('course_list/<int:cl>/',views.course_detail,name="create_detail"),
+    path('course_list/edit/<int:id>/',views.edit_course,name="edit_course"),
+    path('course_list/delete/<int:id>/',views.delete_course,name="delete_course"),
+
+
 
 
 

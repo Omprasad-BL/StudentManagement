@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest,HttpResponse
-from .models import Student
+from .models import Student,Course,StudentProfile
 from .forms import StudentForm,CourseForm
 
 pages=[{"name":"Home page" ,"url":"home" },
@@ -85,3 +85,46 @@ def student_delete(request,pk):
         student.delete()
         return redirect('student_dashboard')
     return render(request, 'students/student_confirm_delete.html', {'student': student})
+
+
+#  COURSE READ ALL /course
+def read_all_course(request):
+    course = Course.objects.all()
+    return render(request,'students/courses.html',context={'courses':course})
+
+#  CREATE course /create-course
+def create_course(request):
+    if request.method=='POST':
+         form = CourseForm(request.POST)
+         if form.is_valid():
+            form.save()
+            return redirect('/student')
+    else:       
+        form = CourseForm()
+    return render(request,'students/create_course.html',
+                  context={'form':form})
+
+#READ COURSE Individual 
+def course_detail(request,cl):
+    course_object = get_object_or_404(Course,pk=cl)
+    return render(request,'students/course_details.html',
+                  context={'course':course_object})
+
+#edit course 
+def edit_course(request,id):
+    course_object = get_object_or_404(Course,pk=id)
+    if request.method=='POST':
+        form = CourseForm(request.POST,instance=course_object)
+        if form.is_valid():
+            form.save()
+            return redirect('/student/course')
+    else:
+        form = CourseForm(instance=course_object)
+        return render(request,'students/create_course.html',
+                  context={'form':form})
+    
+def delete_course(request,id):
+    course_object = get_object_or_404(Course,pk=id)
+    course_object.delete()
+    return redirect("course_list")
+    return HttpResponse("<h1>Course Deleted</h1>")
