@@ -31,7 +31,7 @@ def CreateCourse(req):
         form= CourseForm(req.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('course_list')
     else:
         form=CourseForm()
     return render(req,'students/create_course.html',{'form':form})
@@ -117,14 +117,26 @@ def edit_course(request,id):
         form = CourseForm(request.POST,instance=course_object)
         if form.is_valid():
             form.save()
-            return redirect('/student/course')
+            return redirect('/student/course_list')
     else:
         form = CourseForm(instance=course_object)
         return render(request,'students/create_course.html',
                   context={'form':form})
     
-def delete_course(request,id):
-    course_object = get_object_or_404(Course,pk=id)
-    course_object.delete()
-    return redirect("course_list")
-    return HttpResponse("<h1>Course Deleted</h1>")
+# def delete_course(request,id):
+#     course_object = get_object_or_404(Course,pk=id)
+#     if request.method=='POST':
+#         course_object.delete()
+#         return redirect("course_list")
+#     return render(request,"students/courses.html", context={'course':course_object})
+
+
+def delete_course(request, id):
+    course_object = get_object_or_404(Course, pk=id)
+    
+    if request.method == 'POST':
+        course_object.delete()
+        return redirect('course_list')  # assumes you have this path in urls
+
+    # Show confirmation page
+    return render(request, "students/course_confirm_delete.html", {"course": course_object})
